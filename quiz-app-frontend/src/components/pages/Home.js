@@ -6,10 +6,27 @@ import './Home.css'
 function Home() {
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
+    const [pass, setPass] = useState("");
     const navigate = useNavigate();
+
+    function validate(e) {
+        setPass(e.target.value);
+        if(e.target.value.length < 6){
+            document.getElementById("message").innerHTML="Password must be atleast 6 characters long";
+        }
+        else{
+            document.getElementById("message").innerHTML="Password accepted";
+            setPassword(e.target.value);
+        }
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        if(password == "") {
+            alert("Invalid password");
+            window.location.reload();
+        }
+        else{
         const admin = { name , password};
         fetch('http://localhost:9000/create-admin', {
             method: "POST",
@@ -28,6 +45,7 @@ function Home() {
             .catch((error) => {
                 console.error('Error:', error);
             });
+        }
     }
 
     return (
@@ -55,9 +73,10 @@ function Home() {
                                         <div class="form-group">
                                             <label for="InputPassword">Password</label>
                                             <input type="password" class="form-control" id="InputPassword" autoComplete="off" required placeholder="Enter Password" 
-                                            value={password}
-                                            onChange={(e) => setPassword(e.target.value)}
+                                            value={pass}
+                                            onChange={validate}
                                             />
+                                            <div id="message"></div>
                                         </div>
                                     </div>
                                     <div>

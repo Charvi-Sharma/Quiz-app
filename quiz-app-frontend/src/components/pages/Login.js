@@ -20,9 +20,13 @@ function Login() {
             .then((response) => response.json())
             .then((data) => {
                 console.log('Success:', data._id);
+                if(data._id == undefined) {alert("Invalid login credentials");
+                window.location.reload()}
+                 else{
                 setTimeout(() => {
                     navigate('/'+data._id)
                  }, 1)
+                }
             })
             .catch((error) => {
                 console.error('Error:', error);

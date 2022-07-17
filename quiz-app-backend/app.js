@@ -35,6 +35,7 @@ const adminSchema = {
     option3: String,
     option4: String,
     correct: String
+    // marks: Number
   }],
   scores:
   [{
@@ -90,7 +91,9 @@ app.post("/login",function(req,res){
        res.status(500).send();
    }
    if(!admin)
-   res.status(404).send();
+   res.send({ error: 'Not found' });
+  //  res.status(404).send();
+  else
    res.send(admin);
 });
 });
@@ -106,6 +109,7 @@ app.post("/create-quiz/:adminId",function(req,res){
     option3: req.body.option3,
     option4: req.body.option4,
     correct: req.body.correct
+    // marks: req.body.marks
   }],
   title: req.body.title
 }
@@ -130,6 +134,7 @@ app.post("/add-ques/:quizId",function(req,res){
     option3: req.body.option3,
     option4: req.body.option4,
     correct: req.body.correct
+    // marks: req.body.marks
 }
   Admin.findOneAndUpdate({'quizes._id': requiredQuizId},{ $push: { "quizes.$.quiz": ques }},{ returnDocument: 'after' },(err, doc) => {
       if (err) {
