@@ -65,7 +65,7 @@ function Create() {
         <>
             <section class="colored-section">
                 <div class="container-fluid">
-                    <h1>Create a quiz</h1>
+                    <h1>Create a Quiz</h1>
 
                     <form onSubmit={handleSubmit}>
                         <div class="quiz-form">

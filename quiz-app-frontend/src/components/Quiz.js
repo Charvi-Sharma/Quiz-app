@@ -10,7 +10,6 @@ function Quiz() {
         fetchItems();
     }, []);
 
-    const [index, setIndex] = useState(0);
     const [score, setScore] = useState(0);
     const [name, setName] = useState("");
     const [quizes, setQuizes] = useState([]);
@@ -26,8 +25,11 @@ function Quiz() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        if(name == ""){
+            alert("Enter name");
+            window.location.reload();
+        } else {
         const participant = { name, score };
-        // setPending(true);
         fetch('http://localhost:9000/submit-quiz/' + id, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -35,7 +37,6 @@ function Quiz() {
         }).then((response) => response.json())
             .then((data) => {
                 console.log('Success:', data._id);
-                // setPending(false);
                 setTimeout(() => {
                     navigate('/submit')
                  }, 1)
@@ -43,16 +44,15 @@ function Quiz() {
             .catch((error) => {
                 console.error('Error:', error);
             });
+        }
     }
 
     function wrongAnswer(e) {
         console.log("incorrect");
-        // setIndex(index + 1);
     }
     function rightAnswer(e) {
         console.log("correct");
-        setScore(score + 1)
-        // setIndex(index + 1);
+        setScore(score + 1);
     }
     return (
         <>
@@ -65,17 +65,12 @@ function Quiz() {
                     onChange={(e) => setName(e.target.value)}
                 />
                 </div>
-                {/* <h1>Questions</h1>
-                <label>Name</label>
-                <input type="text" name="question" autoComplete="off" required
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                /> */}
 
                 {
                     quizes.map((item) => (
                         item._id === id ? (
                             <div>
+                                <h1>{item.title}</h1>
                                 {
                                     item.quiz.map((i) => (
                                         <div class="ques">
@@ -88,13 +83,8 @@ function Quiz() {
                                         </div>
                                     ))
                                 }
-                                {/* <p>{item.quiz[index].question}</p>
-                            <button onClick={item.quiz[index].option1 == item.quiz[index].correct ? rightAnswer : wrongAnswer}>{item.quiz[index].option1}</button>
-                            <button onClick={item.quiz[index].option2 == item.quiz[index].correct ? rightAnswer : wrongAnswer}>{item.quiz[index].option2}</button>
-                            <button onClick={item.quiz[index].option3 == item.quiz[index].correct ? rightAnswer : wrongAnswer}>{item.quiz[index].option3}</button>
-                            <button onClick={item.quiz[index].option4 == item.quiz[index].correct ? rightAnswer : wrongAnswer}>{item.quiz[index].option4}</button> */}
                                 <div>
-                                    <button onClick={handleSubmit} class="btn btn-secondary btn-lg btn-block">Submit</button>
+                                    <button type="submit" onClick={handleSubmit} class="btn btn-secondary btn-lg btn-block">Submit</button>
                                 </div>
                             </div>
                         ) : (<div>
