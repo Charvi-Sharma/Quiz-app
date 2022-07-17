@@ -14,6 +14,7 @@ function Create() {
     const [option3, setOption3] = useState("");
     const [option4, setOption4] = useState("");
     const [correct, setCorrect] = useState("");
+
     const [quizId, setQuizId] = useState("");
     const [adding, setAdding] = useState(false);
     const navigate = useNavigate();
@@ -113,46 +114,57 @@ function Create() {
                                     />
                                 </div>
                                 <div class="form-group">
-                                    <label for="InputCorrectAnswer">Choose Correct Answer</label>
-                                    
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="correctAnswer" id="answer1" checked
-                                            value={option1}
-                                            onChange={(e) => setCorrect(e.target.value)}
-                                        />
-                                            <label class="form-check-label" for="answer1">
-                                                {option1}
-                                            </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="correctAnswer" id="answer2" 
-                                            value={option2}
-                                            onChange={(e) => setCorrect(e.target.value)}
-                                        />
-                                            <label class="form-check-label" for="answer2">
-                                                {option2}
-                                            </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="correctAnswer" id="answer3" 
-                                            value={option3}
-                                            onChange={(e) => setCorrect(e.target.value)}
-                                        />
-                                            <label class="form-check-label" for="answer3">
-                                                {option3}
-                                            </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="correctAnswer" id="answer4" 
-                                            value={option4}
-                                            onChange={(e) => setCorrect(e.target.value)}
-                                        />
-                                            <label class="form-check-label" for="answer4">
-                                                {option4}
-                                            </label>
-                                    </div>
+                                    <label for="InputCorrectAnswer">Correct Answer</label>
+                                    <input type="text" class="form-control" name="correct" id="InputCorrectAnswer" autoComplete="off" required placeholder="Enter Correct Answer"
+                                        value={correct}
+                                        onChange={(e) => setCorrect(e.target.value)}
+                                    />
                                 </div>
-                            </div>
+                                {/* <div class="form-group">
+                                    <label for="InputCorrectAnswer">Choose Correct Answer</label> */}
+
+                                {/* <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="correctAnswer" id="answer1"
+                                            value={option1}
+                                            checked={isSelected(value)}
+                                            onChange={handleRadioClick}
+                                        />
+                                        <label class="form-check-label" for="answer1">
+                                            {option1}
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="correctAnswer" id="answer2"
+                                            value={option2}
+                                            checked={isSelected}
+                                            onChange={handleRadioClick}
+                                        />
+                                        <label class="form-check-label" for="answer2">
+                                            {option2}
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="correctAnswer" id="answer3"
+                                            value={option3}
+                                            checked={isSelected}
+                                            onChange={handleRadioClick}
+                                        />
+                                        <label class="form-check-label" for="answer3">
+                                            {option3}
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="correctAnswer" id="answer4"
+                                            value={option4}
+                                            checked={isSelected}
+                                            onChange={handleRadioClick}
+                                        />
+                                        <label class="form-check-label" for="answer4">
+                                            {option4}
+                                        </label>
+                                    </div> 
+                            </div>*/}
+                        </div>
                         </div>
                         <div>
                             {!adding && <button class="btn btn-outline-light btn-lg add-button" type="submit">Add</button>}
@@ -162,7 +174,7 @@ function Create() {
 
                     </form>
                 </div>
-            </section>
+            </section >
         </>
     )
 }
