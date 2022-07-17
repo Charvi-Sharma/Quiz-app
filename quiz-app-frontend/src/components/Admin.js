@@ -24,7 +24,8 @@ function Admin() {
       <section class="colored-section-admin">
         <div class="container-fluid">
         <h1>Quiz Dashboard</h1>
-          <h4>This is the place where you can view all the quizes you have created and share them with your friends, students and colleagues. Just copy the link and send it to them to see how they do !</h4>
+          <div class="content">This is the place where you can view all the quizes you have created and share them with your friends, students and colleagues. Just copy the link and send it to them to see how they do !</div>
+          <Link to={"/create-quiz/" + id}  style={{ color:'white', fontSize:'1.5rem'}}>Create a Quiz</Link>
           <section id="quiz">
             <div id="quiz-carousel" class="carousel slide container-fluid" data-ride="false">
               <div class="carousel-inner">
@@ -34,7 +35,7 @@ function Admin() {
                 {
                   quizes.map(item => (
                     <div class="carousel-item">
-                      <p>Quiz Id: {item._id}</p>
+                      <p>Quiz: {item.title}</p>
                       <p>Share Link: http://localhost:3000/take-quiz/{item._id}</p>
                       <p>Quiz Results</p>
                       {
@@ -56,7 +57,6 @@ function Admin() {
               </button>
             </div>
           </section>
-          <Link to={"/create-quiz/" + id}  style={{ color:'white', fontSize:'1.5rem'}}>Create a Quiz</Link>
         </div>
       </section>
     </>

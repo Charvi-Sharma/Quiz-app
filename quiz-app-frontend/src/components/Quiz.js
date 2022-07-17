@@ -37,7 +37,7 @@ function Quiz() {
                 console.log('Success:', data._id);
                 // setPending(false);
                 setTimeout(() => {
-                    navigate('/')
+                    navigate('/submit')
                  }, 1)
             })
             .catch((error) => {

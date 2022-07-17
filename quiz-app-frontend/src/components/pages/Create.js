@@ -7,6 +7,7 @@ function Create() {
     const params = useParams();
     const id = params.adminId;
 
+    const [title, setTitle] = useState("");
     const [question, setQuestion] = useState("");
     const [option1, setOption1] = useState("");
     const [option2, setOption2] = useState("");
@@ -17,17 +18,17 @@ function Create() {
     const [adding, setAdding] = useState(false);
     const navigate = useNavigate();
 
-    function publish(){
+    function publish() {
         setTimeout(() => {
-            navigate('/'+id)
-         }, 1)
+            navigate('/success/' + id + '/' + quizId)
+        }, 1)
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
         setAdding(true);
         if (quizId == "") {
-            const ques = { question, option1, option2, option3, option4, correct };
+            const ques = { question, option1, option2, option3, option4, correct, title };
             fetch('http://localhost:9000/create-quiz/' + id, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -44,7 +45,7 @@ function Create() {
                 });
         }
         else {
-            const ques = { question, option1, option2, option3, option4, correct };
+            const ques = { question, option1, option2, option3, option4, correct, title };
             fetch('http://localhost:9000/add-ques/' + quizId, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -58,17 +59,24 @@ function Create() {
                     console.error('Error:', error);
                 });
         }
-        
+
     }
     return (
         <>
             <section class="colored-section">
                 <div class="container-fluid">
                     <h1>Create a quiz</h1>
-                    
-                        <form onSubmit={handleSubmit}>
+
+                    <form onSubmit={handleSubmit}>
                         <div class="quiz-form">
                             <div>
+                                <div class="form-group">
+                                    <label for="InputTitle">Quiz Title</label>
+                                    <input type="text" class="form-control" name="title" id="InputTitle" autoComplete="off" required placeholder="Enter Quiz Title"
+                                        value={title}
+                                        onChange={(e) => setTitle(e.target.value)}
+                                    />
+                                </div>
                                 <div class="form-group">
                                     <label for="InputQuestion">Question</label>
                                     <input type="text" class="form-control" name="question" id="InputQuestion" autoComplete="off" required placeholder="Enter Question"
@@ -105,22 +113,55 @@ function Create() {
                                     />
                                 </div>
                                 <div class="form-group">
-                                    <label for="InputCorrectAnswer">Correct Answer</label>
-                                    <input type="text" class="form-control" name="correct" id="InputCorrectAnswer" autoComplete="off" required placeholder="Enter Correct Answer"
-                                        value={correct}
-                                        onChange={(e) => setCorrect(e.target.value)}
-                                    />
+                                    <label for="InputCorrectAnswer">Choose Correct Answer</label>
+                                    
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="correctAnswer" id="answer1" checked
+                                            value={option1}
+                                            onChange={(e) => setCorrect(e.target.value)}
+                                        />
+                                            <label class="form-check-label" for="answer1">
+                                                {option1}
+                                            </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="correctAnswer" id="answer2" 
+                                            value={option2}
+                                            onChange={(e) => setCorrect(e.target.value)}
+                                        />
+                                            <label class="form-check-label" for="answer2">
+                                                {option2}
+                                            </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="correctAnswer" id="answer3" 
+                                            value={option3}
+                                            onChange={(e) => setCorrect(e.target.value)}
+                                        />
+                                            <label class="form-check-label" for="answer3">
+                                                {option3}
+                                            </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="correctAnswer" id="answer4" 
+                                            value={option4}
+                                            onChange={(e) => setCorrect(e.target.value)}
+                                        />
+                                            <label class="form-check-label" for="answer4">
+                                                {option4}
+                                            </label>
+                                    </div>
                                 </div>
                             </div>
-                            </div>
-                            <div>
-                                {!adding && <button class="btn btn-outline-light btn-lg add-button" type="submit">Add</button>}
-                                {adding && <button class="btn btn-outline-light btn-lg add-button" type="submit" disabled >Adding</button>}
-                                <button class="btn btn-outline-light btn-lg add-button" onClick={publish} type="button">Publish</button>
-                            </div>
-                            
-                        </form>
-                    </div>
+                        </div>
+                        <div>
+                            {!adding && <button class="btn btn-outline-light btn-lg add-button" type="submit">Add</button>}
+                            {adding && <button class="btn btn-outline-light btn-lg add-button" type="submit" disabled >Adding</button>}
+                            <button class="btn btn-outline-light btn-lg add-button" onClick={publish} type="button">Publish</button>
+                        </div>
+
+                    </form>
+                </div>
             </section>
         </>
     )

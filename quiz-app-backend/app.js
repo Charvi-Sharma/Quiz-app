@@ -40,7 +40,8 @@ const adminSchema = {
   [{
     name: String,
     score: String
-  }]
+  }],
+  title: String
   // startTime: Date,
   // endTime: Date
 }
@@ -105,7 +106,8 @@ app.post("/create-quiz/:adminId",function(req,res){
     option3: req.body.option3,
     option4: req.body.option4,
     correct: req.body.correct
-  }]
+  }],
+  title: req.body.title
 }
    Admin.findOneAndUpdate({_id:requiredAdminId},{ $inc: {"quizCount": 1}, 
   //  $set:{"startTime": req.body.startTime},
