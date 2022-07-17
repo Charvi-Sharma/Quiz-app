@@ -1,0 +1,12 @@
+h1 , h2 , h3 , h4 , h5 , h6{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+  }
+  .container-fluid {
+    padding: 2% 15%;
+  }
+  .colored-section-admin {
+    color: white;
+    background-color: #ff4c68;
+  }
+  

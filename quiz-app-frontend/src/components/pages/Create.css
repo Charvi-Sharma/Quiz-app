@@ -1,0 +1,29 @@
+h1 , h2 , h3 , h4 , h5 , h6{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+  }
+  .container-fluid {
+    padding: 7% 25%;
+  }
+  .colored-section {
+    color: white;
+    background-color: #ff4c68;
+  }
+  
+  .add-button {
+    margin: 5% 3% 5% 0;
+    font-weight: 500;
+  }
+
+  .hide {
+    display: none;
+  }
+
+  .quiz-form {
+    text-align: left;
+  }
+  
+  ::placeholder {
+    text-align: center;
+  }
+  
