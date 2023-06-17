@@ -48,16 +48,18 @@ function Quiz() {
         }
     }
 
-    function checkanswer(e,ind, op){
-        if(answerlist.length > ind){
-            
-        }
-        e.target.style.color='black';
-        e.target.style.background='pink';
+    function checkanswer(e,ind, op,idx){
         var list=scorelist;
         var answers = answerlist;
-        op === quizes[0].quiz[ind].correct ? list[ind]=1: list[ind]=0;
-        answers[ind]=op;
+        if(answers[ind]){
+            answers[ind].style.background='#f9f497';
+        }
+        answers[ind] = e.target;
+        answers[ind].style.color='black'
+        answers[ind].style.background='pink'
+        op == quizes[idx].quiz[ind].correct ? list[ind]=1: list[ind]=0;
+        console.log(list[ind]);
+        answers[ind]=e.target;
         setAnswerlist(answers);
         setScorelist(list);
         setScore(scorelist.reduce((a, b) => a + b, 0));
@@ -76,7 +78,7 @@ function Quiz() {
                 </div>
 
                 {
-                    quizes.map((item) => (
+                    quizes.map((item, idx) => (
                         item._id === id ? (
                             <div>
                                 <h1>{item.title}</h1>
@@ -84,10 +86,10 @@ function Quiz() {
                                     item.quiz.map((i,ind) => (
                                         <div class="ques">
                                             <h3>{i.question}</h3>
-                                            <button onClick={(e) => checkanswer(e,ind,i.option1)} type="button" class="btn btn-outline-dark option">{i.option1}</button>
-                                            <button onClick={(e) => checkanswer(e,ind,i.option2)} type="button" class="btn btn-outline-dark option">{i.option2}</button>
-                                            <button onClick={(e) => checkanswer(e,ind,i.option3)} type="button" class="btn btn-outline-dark option">{i.option3}</button>
-                                            <button onClick={(e) => checkanswer(e,ind,i.option4)} type="button" class="btn btn-outline-dark option">{i.option4}</button>
+                                            <button onClick={(e) => checkanswer(e,ind,i.option1,idx)} type="button" class="btn btn-outline-dark option">{i.option1}</button>
+                                            <button onClick={(e) => checkanswer(e,ind,i.option2,idx)} type="button" class="btn btn-outline-dark option">{i.option2}</button>
+                                            <button onClick={(e) => checkanswer(e,ind,i.option3,idx)} type="button" class="btn btn-outline-dark option">{i.option3}</button>
+                                            <button onClick={(e) => checkanswer(e,ind,i.option4,idx)} type="button" class="btn btn-outline-dark option">{i.option4}</button>
                                             
                                         </div>
                                     ))
