@@ -9,7 +9,8 @@ function Quiz() {
     useEffect(() => {
         fetchItems();
     }, []);
-
+    const [answerlist, setAnswerlist]= useState([]);
+    const [scorelist, setScorelist]= useState([]);
     const [score, setScore] = useState(0);
     const [name, setName] = useState("");
     const [quizes, setQuizes] = useState([]);
@@ -25,7 +26,7 @@ function Quiz() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if(name == ""){
+        if(name === ""){
             alert("Enter name");
             window.location.reload();
         } else {
@@ -47,13 +48,23 @@ function Quiz() {
         }
     }
 
-    function wrongAnswer(e) {
-        console.log("incorrect");
+    function checkanswer(e,ind, op,idx){
+        var list=scorelist;
+        var answers = answerlist;
+        if(answers[ind]){
+            answers[ind].style.background='#f9f497';
+        }
+        answers[ind] = e.target;
+        answers[ind].style.color='black'
+        answers[ind].style.background='pink'
+        op == quizes[idx].quiz[ind].correct ? list[ind]=1: list[ind]=0;
+        console.log(list[ind]);
+        answers[ind]=e.target;
+        setAnswerlist(answers);
+        setScorelist(list);
+        setScore(scorelist.reduce((a, b) => a + b, 0));
     }
-    function rightAnswer(e) {
-        console.log("correct");
-        setScore(score + 1);
-    }
+
     return (
         <>
         <section class="colored-section">
@@ -67,18 +78,18 @@ function Quiz() {
                 </div>
 
                 {
-                    quizes.map((item) => (
+                    quizes.map((item, idx) => (
                         item._id === id ? (
                             <div>
                                 <h1>{item.title}</h1>
                                 {
-                                    item.quiz.map((i) => (
+                                    item.quiz.map((i,ind) => (
                                         <div class="ques">
                                             <h3>{i.question}</h3>
-                                            <button onClick={i.option1 == i.correct ? rightAnswer : wrongAnswer} type="button" class="btn btn-outline-dark option">{i.option1}</button>
-                                            <button onClick={i.option2 == i.correct ? rightAnswer : wrongAnswer} type="button" class="btn btn-outline-dark option">{i.option2}</button>
-                                            <button onClick={i.option3 == i.correct ? rightAnswer : wrongAnswer} type="button" class="btn btn-outline-dark option">{i.option3}</button>
-                                            <button onClick={i.option4 == i.correct ? rightAnswer : wrongAnswer} type="button" class="btn btn-outline-dark option">{i.option4}</button>
+                                            <button onClick={(e) => checkanswer(e,ind,i.option1,idx)} type="button" class="btn btn-outline-dark option">{i.option1}</button>
+                                            <button onClick={(e) => checkanswer(e,ind,i.option2,idx)} type="button" class="btn btn-outline-dark option">{i.option2}</button>
+                                            <button onClick={(e) => checkanswer(e,ind,i.option3,idx)} type="button" class="btn btn-outline-dark option">{i.option3}</button>
+                                            <button onClick={(e) => checkanswer(e,ind,i.option4,idx)} type="button" class="btn btn-outline-dark option">{i.option4}</button>
                                             
                                         </div>
                                     ))

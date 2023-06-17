@@ -1,12 +1,11 @@
 import React from 'react';
-import { Link, useParams, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import './Success.css'
 
 function Submitted() {
-    const params = useParams();
     const navigate = useNavigate();
 
-    function logout(){
+    function goToHome(){
         setTimeout(() => {
             navigate('/')
          }, 1)
@@ -21,7 +20,7 @@ function Submitted() {
             <p>Register to create your own quiz!</p>
             </div>
             <div>
-                <button class="btn btn-outline-light btn-lg dashboard-button" type="button" onClick={logout}>Register</button>
+                <button class="btn btn-outline-light btn-lg dashboard-button" type="button" onClick={goToHome}>Register</button>
             </div>
             </div>
             </section>

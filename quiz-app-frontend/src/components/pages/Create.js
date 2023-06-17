@@ -28,7 +28,7 @@ function Create() {
     const handleSubmit = (e) => {
         e.preventDefault();
         setAdding(true);
-        if (quizId == "") {
+        if (quizId === "") {
             const ques = { question, option1, option2, option3, option4, correct, title };
             fetch('http://localhost:9000/create-quiz/' + id, {
                 method: 'POST',
@@ -39,6 +39,12 @@ function Create() {
                     console.log('Success:', data.quizCount);
                     console.log(data.quizes[data.quizCount - 1]._id)
                     setQuizId(data.quizes[data.quizCount - 1]._id);
+                    setQuestion("");
+                    setOption1("");
+                    setOption2("");
+                    setOption3("");
+                    setOption4("");
+                    setCorrect("");
                     setAdding(false);
                 })
                 .catch((error) => {
@@ -54,6 +60,12 @@ function Create() {
             }).then((response) => response.json())
                 .then((data) => {
                     console.log('Success:', data.quizCount);
+                    setQuestion("");
+                    setOption1("");
+                    setOption2("");
+                    setOption3("");
+                    setOption4("");
+                    setCorrect("");
                     setAdding(false);
                 })
                 .catch((error) => {

@@ -20,7 +20,7 @@ function Login() {
             .then((response) => response.json())
             .then((data) => {
                 console.log('Success:', data._id);
-                if(data._id == undefined) {alert("Invalid login credentials");
+                if(data._id === undefined) {alert("Invalid login credentials");
                 window.location.reload()}
                  else{
                 setTimeout(() => {
@@ -47,7 +47,7 @@ function Login() {
                             <div class="register-form">
                                 <h1>Sign In</h1>
                                 <form onSubmit={handleSubmit}>
-                                    <div>
+                                    <div class="fields">
                                         <div class="form-group">
                                             <label for="InputEmail">Email address</label>
                                             <input type="email" class="form-control" id="InputEmail" autoComplete="off" required placeholder="Enter email" 

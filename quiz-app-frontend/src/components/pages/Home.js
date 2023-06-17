@@ -22,7 +22,7 @@ function Home() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if(password == "") {
+        if(password === "") {
             alert("Invalid password");
             window.location.reload();
         }
