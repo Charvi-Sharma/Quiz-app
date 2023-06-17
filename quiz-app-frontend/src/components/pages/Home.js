@@ -92,8 +92,6 @@ function Home() {
                 </div>
             </section>
 
-            
-
         </>
     )
 }
