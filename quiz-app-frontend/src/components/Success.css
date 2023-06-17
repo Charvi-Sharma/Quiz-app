@@ -1,0 +1,26 @@
+  h1 , h2 , h3 , h4 , h5 , h6{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+  }
+  
+  .container-fluid-home {
+    padding: 7% 15%;
+  }
+  .colored-section {
+    color: white;
+    background-color: #ff4c68;
+  }
+  .content {
+    padding: 3% 2% 3% 2%;
+    font-size: 1.2rem;
+  }
+  .big-heading {
+    font-weight: 900;
+    font-size: 3.5rem;
+    line-height: 1.5;
+  }
+
+  .dashboard-button {
+    margin: 3% 3% 5% 0;
+    font-weight: 500;
+  }

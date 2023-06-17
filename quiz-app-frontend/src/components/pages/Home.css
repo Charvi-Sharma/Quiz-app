@@ -1,0 +1,44 @@
+h1 , h2 , h3 , h4 , h5 , h6{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+  }
+  
+  .container-fluid-home {
+    padding: 7% 15%;
+  }
+  .colored-section {
+    color: white;
+    background-color: #ff4c68;
+  }
+  
+  .signup-button {
+    margin: 5% 3% 5% 0;
+    font-weight: 500;
+  }
+  
+  .big-heading {
+    font-weight: 900;
+    font-size: 3.5rem;
+    line-height: 1.5;
+  }
+  .register-form {
+    width: 25%;
+    position: absolute;
+    margin-left: 10%;
+  }
+
+  .fields {
+    text-align: left;
+  }
+  
+  ::placeholder {
+    text-align: center; 
+ }
+
+ .form-group {
+  margin: 4% 3% 4% 3%;
+ }
+
+ .footer{
+  bottom: 0%;
+ }
